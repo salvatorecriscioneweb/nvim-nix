@@ -25,36 +25,9 @@
       extra_pkg_config = {
         # allowUnfree = true;
       };
-      # management of the system variable is one of the harder parts of using flakes.
-
-      # so I have done it here in an interesting way to keep it out of the way.
-      # It gets resolved within the builder itself, and then passed to your
-      # categoryDefinitions and packageDefinitions.
-
-      # this allows you to use ${pkgs.system} whenever you want in those sections
-      # without fear.
-
-      dependencyOverlays =
-        # (import ./overlays inputs) ++
-        [
-          # This overlay grabs all the inputs named in the format
-          # `plugins-<pluginName>`
-          # Once we add this overlay to our nixpkgs, we are able to
-          # use `pkgs.neovimPlugins`, which is a set of our plugins.
-          (utils.standardPluginOverlay inputs)
-          # add any other flake overlays here.
-
-          # when other people mess up their overlays by wrapping them with system,
-          # you may instead call this function on their overlay.
-          # it will check if it has the system in the set, and if so return the desired overlay
-          # (utils.fixSystemizedOverlay inputs.codeium.overlays
-          #   (system: inputs.codeium.overlays.${system}.default)
-          # )
-        ];
-
-      # see :help nixCats.flake.outputs.categories
-      # and
-      # :help nixCats.flake.outputs.categoryDefinitions.scheme
+      dependencyOverlays = [
+        (utils.standardPluginOverlay inputs)
+      ];
       categoryDefinitions =
         {
           pkgs,
@@ -118,7 +91,6 @@
               cmp_luasnip
               cmp-nvim-lsp
               cmp-path
-              tokyonight-nvim
               todo-comments-nvim
               mini-nvim
               nvim-treesitter.withAllGrammars
@@ -130,6 +102,7 @@
               leap-nvim
               vim-repeat
               nvim-tree-lua
+              oxocarbon-nvim
             ];
             kickstart-debug = [
               nvim-dap
