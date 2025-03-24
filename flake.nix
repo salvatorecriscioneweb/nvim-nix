@@ -39,17 +39,9 @@
           ...
         }@packageDef:
         {
-          # to define and use a new category, simply add a new list to a set here,
-          # and later, you will include categoryname = true; in the set you
-          # provide when you build the package using this builder function.
-          # see :help nixCats.flake.outputs.packageDefinitions for info on that section.
-
-          # lspsAndRuntimeDeps:
-          # this section is for dependencies that should be available
-          # at RUN TIME for plugins. Will be available to PATH within neovim terminal
-          # this includes LSPs
           lspsAndRuntimeDeps = with pkgs; {
             general = [
+              tree-sitter
               universal-ctags
               ripgrep
               fd
@@ -93,7 +85,19 @@
               cmp-path
               todo-comments-nvim
               mini-nvim
-              nvim-treesitter.withAllGrammars
+              # nvim-treesitter.withAllGrammars
+              (nvim-treesitter.withPlugins (
+                plugins: with plugins; [
+                  nix
+                  lua
+                  typescript
+                  elixir
+                  eex
+                  heex
+                  markdown
+                  yaml
+                ]
+              ))
               # Added
               project-nvim
               nightfox-nvim
@@ -198,7 +202,6 @@
               # IMPORTANT:
               # your alias may not conflict with your other packages.
               aliases = [
-                "vim"
                 "nv"
               ];
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
@@ -224,6 +227,7 @@
 
               # we can pass whatever we want actually.
               have_nerd_font = true;
+              lexical_derivation = "${pkgs.lexical}/bin/lexical";
 
               example = {
                 youCan = "add more than just booleans";

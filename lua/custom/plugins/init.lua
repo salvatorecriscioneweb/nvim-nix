@@ -1,4 +1,5 @@
 return {
+  -- Projects
   {
     'ahmedkhalf/project.nvim',
     opts = {

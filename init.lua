@@ -324,8 +324,12 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
 
       -- NOTE: nixCats: there is help in nixCats for lsps at `:h nixCats.LSPs` and also `:h nixCats.luaUtils`
       local servers = {}
+
+      local lexical_url = nixCats 'lexical_derivation'
       servers.biome = {}
-      servers.lexical = {}
+      servers.lexical = {
+        cmd = { lexical_url },
+      }
 
       -- NOTE: nixCats: nixd is not available on mason.
       -- Feel free to check the nixd docs for more configuration options:
@@ -414,7 +418,6 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        javascript = { 'biome' },
       },
     },
   },
