@@ -107,6 +107,7 @@
               vim-repeat
               nvim-tree-lua
               oxocarbon-nvim
+              lazygit-nvim
             ];
             kickstart-debug = [
               nvim-dap
