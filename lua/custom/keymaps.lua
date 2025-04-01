@@ -26,3 +26,4 @@ map('n', '<C-c>', '<cmd>%y+<CR>', { desc = 'general copy whole file' })
 map('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = 'Nvimtree toggle window' })
 
 map('n', '<leader>ds', vim.diagnostic.setloclist, { desc = 'LSP diagnostic loclist' })
+map('n', '<leader>f', '<cmd>Oil<CR>', { desc = 'Oil File Manager' })

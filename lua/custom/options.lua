@@ -15,8 +15,8 @@ g.maplocalleader = ' '
 g.have_nerd_font = true
 
 -- General
-o.number = true
-o.relativenumber = true
+-- o.number = true
+-- o.relativenumber = true
 o.mouse = 'a'
 o.showmode = false
 
@@ -37,14 +37,13 @@ o.updatetime = 250
 o.timeoutlen = 300
 o.splitright = true
 o.splitbelow = true
-o.list = true
-o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- o.list = true
+-- o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 o.inccommand = 'split'
 o.cursorline = true
 o.scrolloff = 10
 o.confirm = true
 vim.opt.hlsearch = true
 
-if g.neovide then
-  o.guifont = 'MonaspiceXe Nerd Font:h11'
-end
+vim.wo.foldlevel = 99
+vim.wo.conceallevel = 2

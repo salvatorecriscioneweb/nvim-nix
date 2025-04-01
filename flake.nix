@@ -4,10 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-
-    # neovim-nightly-overlay = {
-    #   url = "github:nix-community/neovim-nightly-overlay";
-    # };
   };
 
   # see :help nixCats.flake.outputs
@@ -31,11 +27,6 @@
       categoryDefinitions =
         {
           pkgs,
-          settings,
-          categories,
-          extra,
-          name,
-          mkNvimPlugin,
           ...
         }@packageDef:
         {
@@ -64,73 +55,74 @@
           # This is for plugins that will load at startup without using packadd:
           startupPlugins = with pkgs.vimPlugins; {
             general = [
-              vim-sleuth
               lazy-nvim
-              comment-nvim
+              # autopairs.lua
+              nvim-autopairs
+              # Blink.lua
+              blink-cmp
+              # colorscheme.lua
+              oxocarbon-nvim
+              # conform.lua
+              vim-sleuth
+              conform-nvim
+              # dashboard
+              dashboard-nvim
+              # gitsigns.lua
               gitsigns-nvim
-              which-key-nvim
+              # init.lua
+              project-nvim
+              lazygit-nvim
+              # leap.lua
+              flit-nvim
+              leap-nvim
+              # lsp.lua
+              nvim-lspconfig
+              fidget-nvim
+              lazydev-nvim
+              # mini.lua
+              mini-nvim
+              # neorg.lua
+              neorg
+              nvim-treesitter
+              nvim-treesitter-textobjects
+              # oil.lua
+              oil-nvim
+              # telescope
               telescope-nvim
               telescope-fzf-native-nvim
               telescope-ui-select-nvim
               nvim-web-devicons
-              plenary-nvim
-              nvim-lspconfig
-              lazydev-nvim
-              fidget-nvim
-              conform-nvim
-              nvim-cmp
-              luasnip
-              cmp_luasnip
-              cmp-nvim-lsp
-              cmp-path
+              # todo-comments.lua
               todo-comments-nvim
-              mini-nvim
+              # tree.lua
+              nvim-tree-lua
+              # whichkey.lua
+              which-key-nvim
               # nvim-treesitter.withAllGrammars
               (nvim-treesitter.withPlugins (
                 plugins: with plugins; [
-                  nix
+                  bash
+                  c
+                  diff
+                  html
                   lua
-                  typescript
-                  elixir
-                  eex
-                  heex
+                  luadoc
                   markdown
-                  yaml
+                  markdown_inline
+                  query
+                  vim
+                  vimdoc
+                  elixir
+                  heex
+                  eex
+                  norg
+                  nix
                 ]
               ))
-              # Added
-              project-nvim
-              nightfox-nvim
-              dashboard-nvim
-              flit-nvim
-              leap-nvim
+              # Base
+              friendly-snippets
               vim-repeat
-              nvim-tree-lua
-              oxocarbon-nvim
-              lazygit-nvim
-            ];
-            kickstart-debug = [
-              nvim-dap
-              nvim-dap-ui
-              nvim-dap-go
-              nvim-nio
-            ];
-            kickstart-indent_line = [
-              indent-blankline-nvim
-            ];
-            kickstart-lint = [
-              nvim-lint
-            ];
-            kickstart-autopairs = [
-              nvim-autopairs
-            ];
-            kickstart-neo-tree = [
-              neo-tree-nvim
-              nui-nvim
-              # nixCats will filter out duplicate packages
-              # so you can put dependencies with stuff even if they're
-              # also somewhere else
-              nvim-web-devicons
+              mini-icons
               plenary-nvim
             ];
           };
@@ -212,32 +204,9 @@
               gitPlugins = true;
               customPlugins = true;
               test = true;
-
-              kickstart-autopairs = true;
-              kickstart-neo-tree = false;
-              kickstart-debug = false;
-              kickstart-lint = true;
-              kickstart-indent_line = false;
-
-              # this kickstart extra didnt require any extra plugins
-              # so it doesnt have a category above.
-              # but we can still send the info from nix to lua that we want it!
-              kickstart-gitsigns = true;
-
               # we can pass whatever we want actually.
               have_nerd_font = true;
               lexical_derivation = "${pkgs.lexical}/bin/lexical";
-
-              example = {
-                youCan = "add more than just booleans";
-                toThisSet = [
-                  "and the contents of this categories set"
-                  "will be accessible to your lua with"
-                  "nixCats('path.to.value')"
-                  "see :help nixCats"
-                  "and type :NixCats to see the categories set in nvim"
-                ];
-              };
             };
           };
       };
