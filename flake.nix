@@ -130,11 +130,6 @@
             ];
           };
 
-          # not loaded automatically at startup.
-          # use with packadd and an autocommand in config to achieve lazy loading
-          # NOTE: this template is using lazy.nvim so, which list you put them in is irrelevant.
-          # startupPlugins or optionalPlugins, it doesnt matter, lazy.nvim does the loading.
-          # I just put them all in startupPlugins. I could have put them all in here instead.
           optionalPlugins = { };
 
           # shared libraries to be added to LD_LIBRARY_PATH
@@ -163,13 +158,6 @@
             ];
           };
 
-          # lists of the functions you would have passed to
-          # python.withPackages or lua.withPackages
-
-          # get the path to this python environment
-          # in your lua config via
-          # vim.g.python3_host_prog
-          # or run from nvim terminal via :!<packagename>-python3
           extraPython3Packages = {
             test = _: [ ];
           };
@@ -178,11 +166,6 @@
             test = [ (_: [ ]) ];
           };
         };
-
-      # And then build a package with specific categories from above here:
-      # All categories you wish to include must be marked true,
-      # but false may be omitted.
-      # This entire set is also passed to nixCats for querying within the lua.
 
       # see :help nixCats.flake.outputs.packageDefinitions
       packageDefinitions = {
@@ -210,12 +193,9 @@
               # we can pass whatever we want actually.
               have_nerd_font = true;
               lexical_derivation = "${pkgs.lexical}/bin/lexical";
-              nixd_derivation = "${pkgs.nixd}/bin/nixd";
             };
           };
       };
-      # In this section, the main thing you will need to do is change the default package name
-      # to the name of the packageDefinitions entry you wish to use as the default.
       defaultPackageName = "nvim";
     in
     # see :help nixCats.flake.outputs.exports
@@ -231,9 +211,6 @@
             ;
         } categoryDefinitions packageDefinitions;
         defaultPackage = nixCatsBuilder defaultPackageName;
-        # this is just for using utils such as pkgs.mkShell
-        # The one used to build neovim is resolved inside the builder
-        # and is passed to our categoryDefinitions and packageDefinitions
         pkgs = import nixpkgs { inherit system; };
       in
       {
@@ -285,10 +262,6 @@
         };
       in
       {
-        # these outputs will be NOT wrapped with ${system}
-
-        # this will make an overlay out of each of the packageDefinitions defined above
-        # and set the default overlay to the one named here.
         overlays = utils.makeOverlays luaPath {
           inherit nixpkgs dependencyOverlays extra_pkg_config;
         } categoryDefinitions packageDefinitions defaultPackageName;
