@@ -42,6 +42,8 @@
               nixd
               stylua
               lexical
+              rust-analyzer
+              gopls
               biome
             ];
             kickstart-debug = [
@@ -208,6 +210,7 @@
               # we can pass whatever we want actually.
               have_nerd_font = true;
               lexical_derivation = "${pkgs.lexical}/bin/lexical";
+              nixd_derivation = "${pkgs.nixd}/bin/nixd";
             };
           };
       };

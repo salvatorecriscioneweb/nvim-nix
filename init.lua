@@ -57,6 +57,26 @@ local lazyOptions = {
 -- NOTE: nixCats: this the lazy wrapper. Use it like require('lazy').setup() but with an extra
 -- argument, the path to lazy.nvim as downloaded by nix, or nil, before the normal arguments.
 require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 'lazy.nvim' }, {
+  {
+    'williamboman/mason.nvim',
+    enabled = require('nixCatsUtils').lazyAdd(true, false),
+    config = true,
+    lazy = false,
+  }, -- NOTE: Must be loaded before dependants
+
+  {
+    'williamboman/mason-lspconfig.nvim',
+    -- NOTE: nixCats: use lazyAdd to only enable mason if nix wasnt involved.
+    -- because we will be using nix to download things instead.
+    lazy = false,
+    enabled = require('nixCatsUtils').lazyAdd(true, false),
+  },
+  {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    -- NOTE: nixCats: use lazyAdd to only enable mason if nix wasnt involved.
+    -- because we will be using nix to download things instead.
+    enabled = require('nixCatsUtils').lazyAdd(true, false),
+  },
   { import = 'custom.plugins' },
 }, lazyOptions)
 
