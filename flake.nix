@@ -64,7 +64,6 @@
               blink-cmp
               # colorscheme.lua
               oxocarbon-nvim
-              vscode-nvim
               # conform.lua
               vim-sleuth
               conform-nvim
