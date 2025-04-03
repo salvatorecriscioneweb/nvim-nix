@@ -63,7 +63,7 @@
               # Blink.lua
               blink-cmp
               # colorscheme.lua
-              oxocarbon-nvim
+              lackluster-nvim
               # conform.lua
               vim-sleuth
               conform-nvim

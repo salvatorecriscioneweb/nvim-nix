@@ -1,12 +1,20 @@
 return {
+  -- {
+  --   'slugbyte/lackluster.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   init = function()
+  --     vim.cmd.colorscheme 'lackluster'
+  --     -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
+  --     -- vim.cmd.colorscheme("lackluster-mint")
+  --   end,
+  -- },
   {
-    'nyoom-engineering/oxocarbon.nvim',
-    version = false,
+    'jaredgorski/fogbell.vim',
     lazy = false,
-    priority = 1000,
     config = function()
-      vim.opt.background = 'dark' -- set this to dark or light
-      vim.cmd.colorscheme 'oxocarbon'
+      vim.opt.background = 'light'
+      vim.cmd.colorscheme 'fogbell_light'
     end,
   },
 }
