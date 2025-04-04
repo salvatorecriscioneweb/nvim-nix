@@ -45,6 +45,7 @@
               rust-analyzer
               gopls
               biome
+              typescript-language-server
             ];
             kickstart-debug = [
               delve
