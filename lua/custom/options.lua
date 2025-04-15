@@ -17,8 +17,8 @@ g.maplocalleader = ' '
 g.have_nerd_font = true
 
 -- General
-o.number = true
-o.relativenumber = true
+o.number = false
+-- o.relativenumber = true
 o.mouse = 'a'
 o.showmode = false
 
